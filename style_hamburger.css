@@ -1,0 +1,93 @@
+@charset "utf-8";
+body {
+    margin: 0;
+    display: flex;
+    font-size: 2rem;
+    min-height: 100vh;
+}
+main {
+    width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgb(197, 250, 224);
+}
+aside {
+    width: 20%;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+li{
+    background-color: darkkhaki;
+    border:solid darkslategray;
+}
+div {
+    margin-top: auto;
+    height: 300px;
+}
+
+/*3本線(ハンバーガーメニューアイコン)を作る*/
+ .line1,.line2,.line3 {
+	width: 20px;
+	height: 3px;
+	background-color: black;
+	margin: 3px;
+}
+
+/* burger用 */
+    /* PC表示時はopen,closeクラスは非表示 */
+    .open,
+    .close {
+        display: none;  
+        background-color:rgb(147, 177, 235);
+    }
+
+    /* チェックボックスを隠す装飾 */
+    input[type="checkbox"] {
+        position: absolute;
+        left: -50vw;            /* vw=ビューポートの幅に対する割合 */
+    }
+/* burger用 */
+
+@media screen and (max-width: 1024px) {
+    main {
+        width: 100%;
+        padding-top: 50px;
+    }
+    /* burger用 */
+    
+    /* menu選択ボタン表示 */
+    .open,
+    .close {
+        display: block;         /* displayの値はnone(非表示から変更) */
+    }
+    
+    .open {
+        position: absolute;     /* 表示位置を他の表示情報より１つ前(他の構造に上から重ねる)とする */
+    }
+    aside {
+        position: absolute;
+        left: -250px;           /* 画面内で非表示とするためマイナスの値を設定 */
+        height: 100%;
+        transition: all 1s;     /* アニメーション(menuリスト表示までの時間)を設定 */
+        background-color: #ffffff;
+    }
+     /* "menuへ"をクリック(チェックボックス)時の装飾 */
+    input[type="checkbox"]:checked ~ aside {
+        /* checkbox宣言後のasideタグに対して適用 */
+        left: 0;                /* asideクラスのleftプロパティを上書きして画面表示 */
+    }
+    input[type="checkbox"]:checked ~ .back {
+        /* チェックボックスのlabelタグ部分を画面全体に拡大 */
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    /* burger用 */
+}
